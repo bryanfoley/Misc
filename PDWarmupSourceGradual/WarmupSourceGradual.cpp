@@ -64,9 +64,9 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
     //########################################################
     int PDWarmupSourceGradual::getProgress(float &progress)
     {
-        if (STATE_WAIT_FOR_END_OF_FIRING_PATTERN_STEP == m_state)
+        if (STATE_WAIT_FOR_END_OF_FIRING_PATTERN == m_state)
         {
-            progress = (m_step+1)/3.0f;
+            progress = 0.5f;
         }
         else
         {
@@ -83,7 +83,6 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
     int r;
 	//Number of Warmups that are in the parameters
 	int count = parameters.getSize();
-	count = parameters.getSize();
 	//Counter used to assign if a warmup is needed and at what DC
 	int i = 0;
 	//Int used to determine if the Warmup is needed
@@ -92,16 +91,7 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
     {
         case STATE_IDLE:
         {
-        	//Loop through the parameters to find a DC that is within constraints
-        	for(i = 0; i < count-1; i++)
-        	{
-        		if(parameters.FPDutyCycle[i] < fpc.FPCMaxDutyCycle)
-        			j++;
-        		//break;
-        	}
-
-        	m_warmupGradualNeeded = ((j == 0) ? false : true);
-        	m_step = j;
+        	r = this->checkIfWarmupNeeded(count,i,j);
 
         	//If we have already executed the maximum param duty cycle
         	//if(parameters.FPDutyCycle[m_step] > fpc.FPCMaxDutyCycle)
@@ -124,7 +114,7 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
         		else
         		{
         			m_state = STATE_WAIT_FOR_END_OF_FIRING_PATTERN;
-        			m_warmupGradualStarted = true;
+        			m_warmupGradualStarted = false;
         		}
             //break;
         	}
@@ -208,3 +198,24 @@ int PDWarmupSourceGradual::setUsingDutyCycle()
     }
     return r;
 }
+
+//########################################################
+//  checkIfWarmupNeeded:
+//########################################################
+int PDWarmupSourceGradual::checkIfWarmupNeeded(int count, int i, int j)
+{
+	int r(0);
+
+   	//Loop through the parameters to find a DC that is within constraints
+    for(i = 0; i < count-1; i++)
+    {
+    	if(parameters.FPDutyCycle[i] < fpc.FPCMaxDutyCycle)
+    		j++;
+    }
+
+    m_warmupGradualNeeded = ((j == 0) ? false : true);
+    m_step = j;
+
+    return 0;
+}
+
