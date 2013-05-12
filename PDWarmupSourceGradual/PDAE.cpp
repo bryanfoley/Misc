@@ -29,7 +29,6 @@ using namespace std;
     //########################################################
 AE::AE():
 		m_parameters(),
-		//m_fpc(),
 		m_PDAction()
 {
 	cout << "Created AE object\n";

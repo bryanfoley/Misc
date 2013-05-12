@@ -9,7 +9,6 @@
 #include "TEC.h"
 #include "Structs.h"
 #include "FPC.h"
-//#include "PDAE.h"
 
 class TEC;
 class PDParamContainer;
@@ -56,7 +55,6 @@ class PDWarmupSourceGradual
         {
             STATE_IDLE,
             STATE_WAIT_FOR_END_OF_FIRING_PATTERN,
-            STATE_WAIT_FOR_END_OF_FIRING_PATTERN_STEP
         };
 
         //########################################################
@@ -65,6 +63,7 @@ class PDWarmupSourceGradual
         // Sets the firing pattern
         int setFiringPattern(int step);
         int setUsingDutyCycle();
+        int checkIfWarmupNeeded(int count, int i, int j);
 
         //########################################################
         //  Private member variables
@@ -73,10 +72,6 @@ class PDWarmupSourceGradual
         PDWarmupSourceGradualStates m_state;
         // Object to communicate with TEC
         const TEC m_TEC;
-        //Object containing the firing pattern constraints
-        //fpc &m_fpc;
-        // Object containing the parameters
-        //PDParamContainer &m_parameters;
         //Indicates if a Gradual Warmup is required
         bool m_warmupGradualNeeded;
         // Indicates whether TEC is notified of the start of the warmup

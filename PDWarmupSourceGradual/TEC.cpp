@@ -4,14 +4,12 @@
  *  Created on: Apr 30, 2013
  *      Author: bfoley
  */
-//#include "WarmupSourceGradual.h"
 #include "TEC.h"
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
 #include <cmath>
 #include <ctime>
-//#include "FPC.h"
 
 using namespace std;
 
@@ -24,9 +22,6 @@ using namespace std;
     //########################################################
     TEC::TEC():
         m_state(STATE_IDLE),
-        //m_TEC(),
-        //m_parameters(parameters),
-        //m_warmupGradualStarted(false),
 	    m_step(0)
 {
 }

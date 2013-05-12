@@ -23,8 +23,6 @@ using namespace std;
     PDWarmupSourceGradual::PDWarmupSourceGradual():
         m_state(STATE_IDLE),
         m_TEC(),
-        //m_fpc(),
-        //m_parameters(parameters),
         m_warmupGradualNeeded(false),
         m_warmupGradualStarted(false),
 	    m_step(0)
@@ -40,7 +38,6 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
     void PDWarmupSourceGradual::getName()
     {
         cout << "Warm Up Source Gradual \n";
-        //m_parameters.fillParams();
     }
 
     //########################################################
@@ -93,13 +90,6 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
         {
         	r = this->checkIfWarmupNeeded(count,i,j);
 
-        	//If we have already executed the maximum param duty cycle
-        	//if(parameters.FPDutyCycle[m_step] > fpc.FPCMaxDutyCycle)
-        	//{
-        	//	m_state = STATE_WAIT_FOR_END_OF_FIRING_PATTERN;
-        	//	m_warmupGradualNeeded = false;
-        	//}
-
         	//If needed, then communicate with TEC to start a warmup
         	if (m_warmupGradualNeeded)
         	{
@@ -116,7 +106,6 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
         			m_state = STATE_WAIT_FOR_END_OF_FIRING_PATTERN;
         			m_warmupGradualStarted = false;
         		}
-            //break;
         	}
         	else
         	{
@@ -126,7 +115,6 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
         }
         case STATE_WAIT_FOR_END_OF_FIRING_PATTERN:
         {
-            //response.m_response = IPDAE_RESPONSE_ACTION_COMPLETED;
             if (m_warmupGradualStarted)
             {
                 r = m_TEC.finishWarmup();
@@ -148,7 +136,6 @@ PDWarmupSourceGradual::~PDWarmupSourceGradual()
     if (0 != r)
     {
         cout << "Warmup Source Gradual action failed.\n";
-        //response.m_response = IPDAE_RESPONSE_ACTION_FAILED;
         abort();
     }
     return r;
@@ -181,7 +168,6 @@ int PDWarmupSourceGradual::setUsingDutyCycle()
 		cout << "Duty Cycle requested is too large, using constraint value of ";
     	cout << (fpc.FPCMaxDutyCycle)*100;
     	cout << "% D.C\n";
-    	//parameters.FPDutyCycle[m_step] = fpc.FPCMaxDutyCycle;
     	cout << "\n";
     	r = 0;
     }
@@ -194,7 +180,6 @@ int PDWarmupSourceGradual::setUsingDutyCycle()
 
     if (0 == r)
     {
-        //response.m_response = IPDAE_RESPONSE_START_FIRING_PATTERN;
     }
     return r;
 }

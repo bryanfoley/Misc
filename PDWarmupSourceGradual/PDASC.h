@@ -4,7 +4,6 @@
  *  Created on: May 4, 2013
  *      Author: bfoley
  */
-
 #ifndef PDASC_H_
 #define PDASC_H_
 #include <iostream>
@@ -34,7 +33,6 @@ class ASC
 	    int receiveScannerSimReq(ScannerSimReq Request);
 
 	private:
-	    //fpc &m_fpc;
 	    AE m_AE;
 
 };

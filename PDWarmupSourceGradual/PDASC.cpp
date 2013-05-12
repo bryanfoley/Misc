@@ -19,7 +19,6 @@ using namespace std;
     //  Constructor / destructor
     //########################################################
 ASC::ASC():
-		//m_fpc(),
 		m_AE()
 {
 	cout << "Created ASC object\n";

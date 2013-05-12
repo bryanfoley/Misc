@@ -8,10 +8,8 @@
 #ifndef FPC_H_
 #define FPC_H_
 
-//#include "ScannerSim.h"
+
 #include "Req.h"
-//#include "PDASC.h"
-//#include "PDAE.h"
 #include "WarmupSourceGradual.h"
 #include "Structs.h"
 #include "PDParamContainer.h"

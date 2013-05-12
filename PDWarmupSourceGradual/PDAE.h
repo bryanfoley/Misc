@@ -42,7 +42,6 @@ class AE
 		    PDWarmupSourceGradual m_PDAction;
 
 		private:
-		    //fpc &m_fpc;
 
 };
 
