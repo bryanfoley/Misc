@@ -41,6 +41,15 @@ class finalResult:
         print 'Num of Records: %d'%self.num_of_records
         print '------------------'
         print '------------------'
+
+    def getResults(self):
+        results = []
+        results.append(self.variance)
+        results.append(self.mean)
+        results.append(self.std_dev)
+        results.append(self.average)
+        results.append(self.num_of_records)
+        return results
 		
     def execute(self):
         self.appendValues()
