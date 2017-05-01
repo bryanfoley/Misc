@@ -98,6 +98,7 @@ class statisticsResult:
         self.printResults()
         self.generateExactNumbers()
         self.printLotto()
+        self.plotHistogram()
 		
     def __init__(self, numbers, parameters, finals):
         print 'Histogram Object initialised'
