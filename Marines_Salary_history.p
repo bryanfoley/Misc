@@ -19,6 +19,8 @@
 #01-09-2020	1951	70000.05	0.00	0.00	L05-G16
 #01-06-2021	2224	72380.09	0.00	0.00	L05-G16
 #01-04-2022	2528	74913.41	0.00	0.00	L05-G16
+#01-07-2022	2619	89896.01	20.0	6439.54
+#01-04-2023	2893	107875.21	20.0	7727.45
 
 
 #f(x) = m*x+c
@@ -38,7 +40,7 @@ set ylabel "Annual Salary in Euro"
 set xrange [0:6000]
 set xtics 0,365,6000
 set yrange [34900:120000]
-set ytics 34900,1000,120000
+set ytics 34900,5000,120000
 set out "Salary_projection.png"
 set terminal png size 2000,1500 enhanced font "Helvetica,20"
 plot "-" using 2:3, m*x+c title "Projected Salary" \
@@ -49,7 +51,7 @@ plot "-" using 2:3 title "Actual Salary" \
 with points, \
 "-" using 2:3, m*x+c title "Projected Salary = " \
 with lines
-#date	day	annual	increase (%)	monthly
+#date		day	annual	increase	(%)	monthly
 01-05-2015	0	34900.00	0.00	2500.00
 15-05-2016	380	35633.00	2.10	0.00
 01-08-2016	425	36380.00	2.10	2606.11
@@ -62,4 +64,6 @@ with lines
 01-09-2020	1951	70000.05	0.00	0.00
 01-06-2021	2224	72380.09	0.00	0.00
 01-04-2022	2528	74913.41	0.00	0.00
+01-07-2022	2619	89896.01	20.0	6439.54
+01-04-2023	2893	107875.21	20.0	7727.45
 end
