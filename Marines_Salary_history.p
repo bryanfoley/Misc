@@ -22,11 +22,11 @@
 #01-07-2022	2619	89896.01	20.0	6439.54
 #01-04-2023	2893	107875.21	20.0	7727.45
 
-
+## Fitting, uncomment the two lines below to calculate a new 'm' and 'c' values if new points are added to the data table
 #f(x) = m*x+c
-#fit [0:882] f(x) "-" using 2:3 via m,c
-m = 15.7667
-c = 31605
+#fit [0:2893] f(x) "-" using 2:3 via m,c #the range must be updated if a new data point is available
+m = 22.5668 #temporary value, always recalc if new data point are available
+c = 26824.1 #also temporary
 set key left top
 set arrow 1 from 0,36366 to 6000,36366 nohead
 set arrow 2 from 0,45458 to 6000,45458 nohead
@@ -43,14 +43,11 @@ set yrange [34900:120000]
 set ytics 34900,5000,120000
 set out "Salary_projection.png"
 set terminal png size 2000,1500 enhanced font "Helvetica,20"
-plot "-" using 2:3, m*x+c title "Projected Salary" \
-with lines, \
-"-" using 2:3 title "Actual Salary" \
-with points
-plot "-" using 2:3 title "Actual Salary" \
-with points, \
-"-" using 2:3, m*x+c title "Projected Salary = " \
-with lines
+
+#Plotting
+p "-" u 2:3 title "Actual Salary" w lp,\
+	"-" u 2:3, m*x+c title "Projected Salary" w l
+
 #date		day	annual	increase	(%)	monthly
 01-05-2015	0	34900.00	0.00	2500.00
 15-05-2016	380	35633.00	2.10	0.00
